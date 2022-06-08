@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+        Schema::create('vendor_accounts', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->integer('vendor_id')->nullable();
+            $table->string('name');
+            $table->timestamps();
+
+            $table->foreign('vendor_id', 'vendor_accounts_ibfk_1')->references('id')->on('vendors');
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('vendor_accounts');
     }
 };

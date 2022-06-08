@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('materials', function (Blueprint $table) {
+            $table->integer('id')->primary();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->integer('type_id')->nullable();
+            $table->integer('color_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('type_id', 'materials_ibfk_1')->references('id')->on('material_types');
+            $table->foreign('color_id', 'materials_ibfk_2')->references('id')->on('material_colors');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('materials');
     }
 };

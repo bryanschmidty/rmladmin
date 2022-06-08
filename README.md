@@ -3,6 +3,6 @@
 ### Steps
 
 - [x] Install Laravel
-- [ ] Design database tables for materials
-- [ ] Create migration files
+- [x] Design database tables for materials
+- [x] Create migration files
 - [ ] Install Craftable
